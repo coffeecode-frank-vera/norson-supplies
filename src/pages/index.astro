@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Hero from '../sections/Hero.astro'
+import Nosotros from '../sections/Nosotros.astro'
+
+// JSON-LD LocalBusiness schema
+// TODO: add "address" object once client provides physical address
+// TODO: add "geo" object once client provides GPS coordinates
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "NorSon Supplies",
+  "description": "Distribuidora de materiales de construcción para contratistas en Sinaloa y el noroeste de México. Venta de materiales, renta de maquinaria y soluciones para obra.",
+  "telephone": "+526313035892",
+  "email": "Yolanda.padilla@galetadistribuidora.com",
+  "url": "https://norsonsupplies.com",
+  "areaServed": {
+    "@type": "State",
+    "name": "Sinaloa"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Materiales de Construcción",
+    "numberOfItems": 38
+  }
+}
+---
+
+<BaseLayout
+  title="Materiales de Construcción en Sinaloa | NorSon Supplies"
+  description="Distribuidora de materiales de construcción en Sinaloa. Bloques, cemento, lámina, acero y renta de maquinaria. Entrega rápida. Llama a NorSon Supplies."
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  <Hero />
+  <Nosotros />
+</BaseLayout>

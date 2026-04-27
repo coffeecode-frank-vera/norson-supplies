@@ -1,0 +1,130 @@
+---
+interface Value {
+  label: string
+  description: string
+  icon: string
+}
+
+const values: Value[] = [
+  {
+    label: "Entrega puntual",
+    description: "El material llega cuando lo necesitas, no cuando nos convenga.",
+    icon: "truck",
+  },
+  {
+    label: "Inventario completo",
+    description: "De cementos a acero — todo en un solo proveedor.",
+    icon: "cube",
+  },
+  {
+    label: "Calidad verificada",
+    description: "Solo marcas y lotes que pasan nuestro control antes de salir.",
+    icon: "shield-check",
+  },
+  {
+    label: "Trato directo",
+    description: "Sin intermediarios: hablas con quien decide.",
+    icon: "chat-bubble",
+  },
+  {
+    label: "Presencia regional",
+    description: "Conocemos las obras del noroeste porque estamos en Sinaloa, no en un call center.",
+    icon: "map-pin",
+  },
+  {
+    label: "Precio transparente",
+    description: "El precio que te cotizamos es el que pagas — sin sorpresas al facturar.",
+    icon: "currency-dollar",
+  },
+]
+---
+
+<section class="bg-[#f8fafc] py-16 md:py-24 px-5 md:px-10 lg:px-0">
+  <div class="max-w-5xl mx-auto">
+
+    <p class="text-xs font-semibold tracking-widest uppercase text-[#64748b] text-center mb-3">
+      Sobre nosotros
+    </p>
+
+    <h2 class="text-2xl md:text-4xl font-bold text-[#1a3a5c] text-center leading-tight max-w-2xl mx-auto mb-10 md:mb-14">
+      Una distribuidora que trabaja para que tu obra no se detenga
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12 md:mb-16">
+      <div class="border-l-4 border-[#f97316] bg-white rounded-r-lg p-6 shadow-sm">
+        <h3 class="text-base font-semibold text-[#1a3a5c] mb-2">Nuestra promesa</h3>
+        <p class="text-base text-[#1e293b] leading-relaxed">
+          Llevamos materiales de construcción de calidad comprobada directamente al sitio de trabajo del contratista — con el surtido completo, el precio justo y la entrega que no detiene la obra.
+        </p>
+      </div>
+
+      <div class="border-l-4 border-[#f97316] bg-white rounded-r-lg p-6 shadow-sm">
+        <h3 class="text-base font-semibold text-[#1a3a5c] mb-2">Nuestro compromiso con la región</h3>
+        <p class="text-base text-[#1e293b] leading-relaxed">
+          Ser el distribuidor de referencia en el noroeste de México: el que el contratista llama primero porque sabe que siempre hay material, siempre hay respuesta y siempre hay trato directo.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12 md:mb-16">
+      {values.map((v) => (
+        <div class="bg-white rounded-lg p-5 shadow-sm flex flex-col gap-3">
+          <div class="w-10 h-10 flex items-center justify-center rounded-md bg-[#1a3a5c]/8 shrink-0">
+            {v.icon === "truck" && (
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M1 3h13v13H1zM14 8h4l3 3v5h-7V8z"/>
+                <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+              </svg>
+            )}
+            {v.icon === "cube" && (
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            )}
+            {v.icon === "shield-check" && (
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <polyline points="9 12 11 14 15 10"/>
+              </svg>
+            )}
+            {v.icon === "chat-bubble" && (
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                <path d="M8 10h.01M12 10h.01M16 10h.01" stroke-width="2.5"/>
+              </svg>
+            )}
+            {v.icon === "map-pin" && (
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            )}
+            {v.icon === "currency-dollar" && (
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            )}
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-[#1a3a5c] mb-1">{v.label}</p>
+            <p class="text-sm text-[#64748b] leading-relaxed">{v.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="flex justify-center">
+      <a
+        href="https://wa.me/526313035892"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center min-h-[44px] w-full max-w-[280px] md:w-auto md:px-8 border-2 border-[#1a3a5c] text-[#1a3a5c] text-base font-semibold rounded-lg transition-colors hover:bg-[#1a3a5c] hover:text-white"
+      >
+        Habla con un asesor &rarr;
+      </a>
+    </div>
+
+  </div>
+</section>
