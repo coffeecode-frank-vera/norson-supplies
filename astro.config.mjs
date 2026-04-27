@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite'
 import sitemap from '@astrojs/sitemap'
 
 export default defineConfig({
-  site: 'norson-supplies.coffeecode.com.mx',
+  site: 'https://norson-supplies.coffeecode.com.mx',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
