@@ -3,8 +3,7 @@ import tailwindcss from '@tailwindcss/vite'
 import sitemap from '@astrojs/sitemap'
 
 export default defineConfig({
-  site: 'https://coffeecode-frank-vera.github.io',
-  base: '/norson-supplies',
+  site: 'norson-supplies.coffeecode.com.mx',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
