@@ -19,7 +19,7 @@ interface CsvRow {
   'Imagen': string
 }
 
-const csvPath = resolve('seed/catalog.csv')
+const csvPath = resolve('public/seed/catalog.csv')
 const csvText = readFileSync(csvPath, 'utf-8')
 
 const { data } = Papa.parse<CsvRow>(csvText, {

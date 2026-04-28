@@ -16,7 +16,7 @@ interface CsvRow {
   'Imagen': string
 }
 
-const catalogCsv = readFileSync(resolve('seed/catalog.csv'), 'utf-8')
+const catalogCsv = readFileSync(resolve('public/seed/catalog.csv'), 'utf-8')
 const { data: catalogData } = Papa.parse<CsvRow>(catalogCsv, {
   header: true,
   skipEmptyLines: true,
