@@ -39,88 +39,124 @@ const values: Value[] = [
 ]
 ---
 
-<section class="bg-[#f8fafc] py-16 md:py-24 px-5 md:px-10 lg:px-0">
+<section id="nosotros" class="bg-[#f8fafc] py-16 md:py-24 px-5 md:px-10 lg:px-0">
   <div class="max-w-5xl mx-auto">
 
-    <p class="text-xs font-semibold tracking-widest uppercase text-[#64748b] text-center mb-3">
-      Sobre nosotros
-    </p>
+    <div data-reveal class="text-center mb-10 md:mb-14">
+      <p class="text-xs font-semibold tracking-widest uppercase text-[#64748b] mb-3">
+        Sobre nosotros
+      </p>
+      <h2 class="text-2xl md:text-4xl font-bold text-[#1a3a5c] leading-tight max-w-2xl mx-auto">
+        Una distribuidora que trabaja para que tu obra no se detenga
+      </h2>
+    </div>
 
-    <h2 class="text-2xl md:text-4xl font-bold text-[#1a3a5c] text-center leading-tight max-w-2xl mx-auto mb-10 md:mb-14">
-      Una distribuidora que trabaja para que tu obra no se detenga
-    </h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12 md:mb-16">
-      <div class="border-l-4 border-[#f97316] bg-white rounded-r-lg p-6 shadow-sm">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10 md:mb-12">
+      <div
+        data-reveal
+        data-delay="100"
+        class="border-l-4 border-[#f97316] bg-white rounded-r-lg p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+      >
         <h3 class="text-base font-semibold text-[#1a3a5c] mb-2">Nuestra promesa</h3>
         <p class="text-base text-[#1e293b] leading-relaxed">
-          Llevamos materiales de construcción de calidad comprobada directamente al sitio de trabajo del contratista — con el surtido completo, el precio justo y la entrega que no detiene la obra.
+          Llevamos materiales de construcción de calidad comprobada directamente al sitio de trabajo
+          del contratista — con el surtido completo, el precio justo y la entrega que no detiene la obra.
         </p>
       </div>
 
-      <div class="border-l-4 border-[#f97316] bg-white rounded-r-lg p-6 shadow-sm">
+      <div
+        data-reveal
+        data-delay="200"
+        class="border-l-4 border-[#f97316] bg-white rounded-r-lg p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+      >
         <h3 class="text-base font-semibold text-[#1a3a5c] mb-2">Nuestro compromiso con la región</h3>
         <p class="text-base text-[#1e293b] leading-relaxed">
-          Ser el distribuidor de referencia en el noroeste de México: el que el contratista llama primero porque sabe que siempre hay material, siempre hay respuesta y siempre hay trato directo.
+          Ser el distribuidor de referencia en el noroeste de México: el que el contratista llama
+          primero porque sabe que siempre hay material, siempre hay respuesta y siempre hay trato directo.
         </p>
       </div>
     </div>
 
+    <!-- Stats bar -->
+    <div data-reveal class="grid grid-cols-3 gap-2 md:gap-4 mb-12 md:mb-16 py-6 md:py-8 bg-white rounded-xl shadow-sm border border-[#e2e8f0]">
+      <div class="text-center px-1 md:px-4">
+        <p class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#f97316]">
+          <span data-count="80" data-suffix="+">80+</span>
+        </p>
+        <p class="text-[10px] md:text-sm text-[#64748b] mt-1 font-medium leading-tight">productos<br class="md:hidden"/> disponibles</p>
+      </div>
+      <div class="text-center px-1 md:px-4 border-x border-[#e2e8f0]">
+        <p class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#f97316]">
+          <span data-count="12">12</span>
+        </p>
+        <p class="text-[10px] md:text-sm text-[#64748b] mt-1 font-medium leading-tight">categorías<br class="md:hidden"/> de materiales</p>
+      </div>
+      <div class="text-center px-1 md:px-4">
+        <p class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#f97316]">1:1</p>
+        <p class="text-[10px] md:text-sm text-[#64748b] mt-1 font-medium leading-tight">trato<br class="md:hidden"/> directo</p>
+      </div>
+    </div>
+
+    <!-- Values grid -->
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12 md:mb-16">
-      {values.map((v) => (
-        <div class="bg-white rounded-lg p-5 shadow-sm flex flex-col gap-3">
-          <div class="w-10 h-10 flex items-center justify-center rounded-md bg-[#1a3a5c]/8 shrink-0">
+      {values.map((v, i) => (
+        <div
+          data-reveal
+          data-delay={String((i % 3) * 100 + 100)}
+          class="group bg-white rounded-lg p-5 shadow-sm flex flex-col gap-3 hover:-translate-y-1 hover:shadow-md transition-all duration-300 cursor-default border border-transparent hover:border-[#f97316]/20"
+        >
+          <div class="w-10 h-10 flex items-center justify-center rounded-md bg-[#1a3a5c]/8 shrink-0 group-hover:bg-[#f97316]/10 group-hover:scale-110 transition-all duration-300">
             {v.icon === "truck" && (
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="group-hover:stroke-[#f97316] transition-colors duration-300">
                 <path d="M1 3h13v13H1zM14 8h4l3 3v5h-7V8z"/>
                 <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
               </svg>
             )}
             {v.icon === "cube" && (
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="group-hover:stroke-[#f97316] transition-colors duration-300">
                 <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
                 <polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
               </svg>
             )}
             {v.icon === "shield-check" && (
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="group-hover:stroke-[#f97316] transition-colors duration-300">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                 <polyline points="9 12 11 14 15 10"/>
               </svg>
             )}
             {v.icon === "chat-bubble" && (
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="group-hover:stroke-[#f97316] transition-colors duration-300">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                 <path d="M8 10h.01M12 10h.01M16 10h.01" stroke-width="2.5"/>
               </svg>
             )}
             {v.icon === "map-pin" && (
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="group-hover:stroke-[#f97316] transition-colors duration-300">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                 <circle cx="12" cy="10" r="3"/>
               </svg>
             )}
             {v.icon === "currency-dollar" && (
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="group-hover:stroke-[#f97316] transition-colors duration-300">
                 <line x1="12" y1="1" x2="12" y2="23"/>
                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
               </svg>
             )}
           </div>
           <div>
-            <p class="text-sm font-semibold text-[#1a3a5c] mb-1">{v.label}</p>
+            <p class="text-sm font-semibold text-[#1a3a5c] mb-1 group-hover:text-[#f97316] transition-colors duration-300">{v.label}</p>
             <p class="text-sm text-[#64748b] leading-relaxed">{v.description}</p>
           </div>
         </div>
       ))}
     </div>
 
-    <div class="flex justify-center">
+    <div data-reveal class="flex justify-center">
       <a
         href="https://wa.me/526313035892"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center justify-center min-h-[44px] w-full max-w-[280px] md:w-auto md:px-8 border-2 border-[#1a3a5c] text-[#1a3a5c] text-base font-semibold rounded-lg transition-colors hover:bg-[#1a3a5c] hover:text-white"
+        class="inline-flex items-center justify-center min-h-[44px] w-full max-w-[280px] md:w-auto md:px-8 border-2 border-[#1a3a5c] text-[#1a3a5c] text-base font-semibold rounded-lg transition-all duration-300 hover:bg-[#1a3a5c] hover:text-white hover:shadow-lg btn-shimmer"
       >
         Habla con un asesor &rarr;
       </a>

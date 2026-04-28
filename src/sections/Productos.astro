@@ -1,0 +1,163 @@
+---
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+import Papa from 'papaparse'
+import type { ImageMetadata } from 'astro'
+import ProductCard from '../components/ProductCard.astro'
+
+interface Product {
+  categoria: string
+  nombre: string
+  descripcion: string
+  imagen: string
+}
+
+interface CsvRow {
+  'Categoría': string
+  'Producto': string
+  'Descripción': string
+  'Imagen': string
+}
+
+const csvPath = resolve('seed/catalog.csv')
+const csvText = readFileSync(csvPath, 'utf-8')
+
+const { data } = Papa.parse<CsvRow>(csvText, {
+  header: true,
+  skipEmptyLines: true,
+})
+
+const products: Product[] = data.map((row) => ({
+  categoria: row['Categoría'] ?? '',
+  nombre: row['Producto'] ?? '',
+  descripcion: row['Descripción'] ?? '',
+  imagen: row['Imagen'] ?? '',
+}))
+
+const categorias = ['Todos', ...Array.from(new Set(products.map((p) => p.categoria)))]
+
+const imageGlob = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/images/*.webp',
+  { eager: true }
+)
+
+function getImage(nombre: string): ImageMetadata | null {
+  if (!nombre) return null
+  const key = `../assets/images/${nombre}.webp`
+  const mod = imageGlob[key]
+  return mod ? mod.default : null
+}
+---
+
+<section id="productos" class="bg-white py-16 px-4 md:px-8 lg:px-12">
+  <div class="max-w-screen-xl mx-auto">
+
+    <div data-reveal class="text-center mb-8">
+      <p class="text-xs font-semibold tracking-widest text-[#64748b] uppercase mb-2">
+        NUESTROS PRODUCTOS
+      </p>
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1e293b] leading-tight">
+        Todo lo que necesita tu obra, en un solo lugar
+      </h2>
+      <p class="text-base text-[#64748b] mt-3">
+        Filtra por categoría y cotiza directo por WhatsApp.
+      </p>
+    </div>
+
+    <div
+      id="filter-tabs"
+      class="flex overflow-x-auto gap-2 py-3 sticky top-0 z-10 bg-white shadow-sm [&::-webkit-scrollbar]:hidden md:flex-wrap md:justify-center md:static md:shadow-none"
+      role="toolbar"
+      aria-label="Filtrar por categoría"
+    >
+      {categorias.map((cat, i) => (
+        <button
+          type="button"
+          data-value={cat}
+          aria-pressed={i === 0 ? 'true' : 'false'}
+          class={`flex-shrink-0 rounded-full px-4 py-2 text-sm font-medium min-h-[44px] transition-all duration-200 ${
+            i === 0
+              ? 'bg-[#1a3a5c] text-white shadow-md'
+              : 'bg-[#f1f5f9] text-[#1e293b] hover:bg-[#e2e8f0]'
+          }`}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <div
+      id="product-grid"
+      class="grid grid-cols-2 gap-3 mt-6 md:gap-4 lg:grid-cols-3 xl:grid-cols-4"
+    >
+      {products.map((product, index) => (
+        <ProductCard
+          nombre={product.nombre}
+          descripcion={product.descripcion}
+          categoria={product.categoria}
+          imagen={getImage(product.imagen)}
+          eager={index < 4}
+        />
+      ))}
+    </div>
+
+    <p data-reveal data-delay="100" class="text-center text-base text-[#1e293b] mt-10">
+      ¿Prefieres llamar? Llama al{' '}
+      <a
+        href="tel:6313035892"
+        class="font-semibold text-[#1a3a5c] underline underline-offset-2 hover:text-[#f97316] transition-colors"
+      >
+        631 303 5892
+      </a>
+    </p>
+
+  </div>
+</section>
+
+<script>
+  const toolbar = document.getElementById('filter-tabs')
+  const grid = document.getElementById('product-grid')
+
+  if (toolbar && grid) {
+    const buttons = toolbar.querySelectorAll<HTMLButtonElement>('button[data-value]')
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>('article[data-categoria]'))
+
+    toolbar.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-value]')
+      if (!btn) return
+
+      const selected = btn.dataset.value ?? 'Todos'
+
+      buttons.forEach((b) => {
+        const active = b.dataset.value === selected
+        b.setAttribute('aria-pressed', active ? 'true' : 'false')
+        b.classList.toggle('bg-[#1a3a5c]', active)
+        b.classList.toggle('text-white', active)
+        b.classList.toggle('shadow-md', active)
+        b.classList.toggle('bg-[#f1f5f9]', !active)
+        b.classList.toggle('text-[#1e293b]', !active)
+      })
+
+      // Fade out hidden, fade in matching
+      cards.forEach((card) => {
+        const match = selected === 'Todos' || card.dataset.categoria === selected
+        if (match) {
+          card.style.transition = 'opacity 0.3s ease, transform 0.3s ease'
+          card.style.opacity = '0'
+          card.style.transform = 'translateY(8px)'
+          card.classList.remove('hidden')
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              card.style.opacity = '1'
+              card.style.transform = 'translateY(0)'
+            })
+          })
+        } else {
+          card.style.transition = 'opacity 0.2s ease'
+          card.style.opacity = '0'
+          setTimeout(() => card.classList.add('hidden'), 200)
+        }
+      })
+    })
+  }
+</script>

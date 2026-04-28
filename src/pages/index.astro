@@ -1,11 +1,50 @@
 ---
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+import Papa from 'papaparse'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Hero from '../sections/Hero.astro'
 import Nosotros from '../sections/Nosotros.astro'
+import Productos from '../sections/Productos.astro'
+import Contacto from '../sections/Contacto.astro'
+import Footer from '../sections/Footer.astro'
+
+interface CsvRow {
+  'Categoría': string
+  'Producto': string
+  'Descripción': string
+  'Imagen': string
+}
+
+const catalogCsv = readFileSync(resolve('seed/catalog.csv'), 'utf-8')
+const { data: catalogData } = Papa.parse<CsvRow>(catalogCsv, {
+  header: true,
+  skipEmptyLines: true,
+})
+
+const siteUrl = (import.meta.env.SITE as string | undefined)?.replace(/\/$/, '') ?? 'https://norsonsupplies.com'
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Catálogo de Materiales de Construcción — NorSon Supplies",
+  "description": "Productos disponibles en NorSon Supplies: cemento, block, lámina, impermeabilizantes, acero y más materiales para obra en Sinaloa.",
+  "url": `${siteUrl}/#productos`,
+  "numberOfItems": catalogData.length,
+  "itemListElement": catalogData.map((row, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": row['Producto'],
+    "description": row['Descripción'],
+    "url": `${siteUrl}/#productos`,
+  })),
+}
 
 // JSON-LD LocalBusiness schema
-// TODO: add "address" object once client provides physical address
-// TODO: add "geo" object once client provides GPS coordinates
+// TODO: add "address" object once client provides physical address (streetAddress, addressLocality)
+// NOTE: geo coordinates provided by client (31.300814, -110.954094) — confirm municipality with client
+//   before publishing; these coordinates resolve to the Agua Prieta / Sonora border area, not Sinaloa.
+//   If the business address is in Sinaloa, client must re-confirm correct coordinates.
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -13,10 +52,22 @@ const localBusinessSchema = {
   "description": "Distribuidora de materiales de construcción para contratistas en Sinaloa y el noroeste de México. Venta de materiales, renta de maquinaria y soluciones para obra.",
   "telephone": "+526313035892",
   "email": "Yolanda.padilla@galetadistribuidora.com",
-  "url": "https://norsonsupplies.com",
+  "url": siteUrl,
   "areaServed": {
     "@type": "State",
     "name": "Sinaloa"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "31.300814",
+    "longitude": "-110.954094"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+52-631-303-5892",
+    "contactType": "sales",
+    "areaServed": "MX",
+    "availableLanguage": "Spanish"
   },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -24,6 +75,21 @@ const localBusinessSchema = {
     "numberOfItems": 38
   }
 }
+
+const marqueeItems = [
+  'Cementos y Morteros',
+  'Block y Mampostería',
+  'Impermeabilización',
+  'Acero de Refuerzo',
+  'Cubiertas para Techos',
+  'Renta de Maquinaria',
+  'Aditivos',
+  'Estucos y Recubrimientos',
+  'Tejas',
+  'Agregados',
+  'Entrega en Sinaloa',
+  'Asesoría en Obra',
+]
 ---
 
 <BaseLayout
@@ -31,6 +97,32 @@ const localBusinessSchema = {
   description="Distribuidora de materiales de construcción en Sinaloa. Bloques, cemento, lámina, acero y renta de maquinaria. Entrega rápida. Llama a NorSon Supplies."
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+
   <Hero />
+
+  <!-- Marquee ticker -->
+  <div
+    class="overflow-hidden py-3 border-y border-white/10"
+    style="background: #0c2540;"
+    aria-hidden="true"
+  >
+    <div class="flex whitespace-nowrap [animation:marquee_28s_linear_infinite]">
+      {[0, 1].map(() => (
+        <span class="flex items-center">
+          {marqueeItems.map((item) => (
+            <span class="inline-flex items-center gap-2.5 px-5 text-sm font-medium text-white/60">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#f97316] shrink-0"></span>
+              {item}
+            </span>
+          ))}
+        </span>
+      ))}
+    </div>
+  </div>
+
   <Nosotros />
+  <Productos />
+  <Contacto />
+  <Footer />
 </BaseLayout>

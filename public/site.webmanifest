@@ -1,0 +1,22 @@
+{
+  "name": "NorSon Supplies",
+  "short_name": "NorSon",
+  "description": "Distribuidora de materiales de construcción en Sinaloa. Bloques, cemento, lámina, acero y renta de maquinaria. Entrega rápida.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a3a5c",
+  "theme_color": "#1a3a5c",
+  "lang": "es-MX",
+  "icons": [
+    {
+      "src": "/images/logo-norson.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/logo-norson.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
