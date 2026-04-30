@@ -49,7 +49,7 @@ function getImage(nombre: string): ImageMetadata | null {
 }
 ---
 
-<section id="productos" class="bg-white py-16 px-4 md:px-8 lg:px-12">
+<section id="productos" class="bg-white bg-dot-grid py-16 px-4 md:px-8 lg:px-12">
   <div class="max-w-screen-xl mx-auto">
 
     <div data-reveal class="text-center mb-8">
@@ -96,7 +96,8 @@ function getImage(nombre: string): ImageMetadata | null {
           descripcion={product.descripcion}
           categoria={product.categoria}
           imagen={getImage(product.imagen)}
-          eager={index < 4}
+          eager={false}
+          delay={(index % 4) * 80}
         />
       ))}
     </div>

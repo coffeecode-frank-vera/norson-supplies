@@ -1,24 +1,25 @@
 ---
+import { Image } from 'astro:assets'
 import logo from '../../public/images/logo-norson.png'
 ---
 
 <section
   id="inicio"
   class="relative flex flex-col min-h-svh overflow-hidden lg:min-h-0"
-  style="background: linear-gradient(135deg, #0c2540 0%, #1a3a5c 55%, #1e4470 100%);"
+  style="background: radial-gradient(ellipse 80% 60% at 20% 30%, rgba(30,100,160,0.55) 0%, transparent 60%), radial-gradient(ellipse 60% 80% at 80% 70%, rgba(249,115,22,0.18) 0%, transparent 55%), radial-gradient(ellipse 100% 100% at 50% 50%, #0c2540 0%, #1a3a5c 100%);"
 >
   <!-- Floating ambient orbs -->
   <div
-    class="absolute top-[6%] left-[2%] w-64 h-64 lg:w-96 lg:h-96 rounded-full bg-white/[0.04] blur-3xl pointer-events-none [animation:float_10s_ease-in-out_infinite]"
+    class="absolute top-[6%] left-[2%] w-64 h-64 lg:w-96 lg:h-96 rounded-full bg-white/[0.15] blur-3xl pointer-events-none [animation:float_10s_ease-in-out_infinite]"
     aria-hidden="true"
   ></div>
   <div
     class="absolute bottom-[8%] left-[12%] w-48 h-48 lg:w-64 lg:h-64 rounded-full blur-3xl pointer-events-none [animation:float-alt_13s_ease-in-out_infinite_3s]"
-    style="background: rgba(249,115,22,0.08);"
+    style="background: rgba(249,115,22,0.28);"
     aria-hidden="true"
   ></div>
   <div
-    class="absolute top-[42%] left-[28%] w-40 h-40 lg:w-48 lg:h-48 rounded-full bg-white/[0.03] blur-2xl pointer-events-none [animation:float_8s_ease-in-out_infinite_1.5s]"
+    class="absolute top-[42%] left-[28%] w-40 h-40 lg:w-48 lg:h-48 rounded-full bg-white/[0.10] blur-2xl pointer-events-none [animation:float_8s_ease-in-out_infinite_1.5s]"
     aria-hidden="true"
   ></div>
 
@@ -66,11 +67,11 @@ import logo from '../../public/images/logo-norson.png'
     class="hidden lg:flex items-center justify-between h-[72px] px-10 w-full relative z-10 [animation:fade-in_0.7s_ease-out_both]"
   >
     <div class="flex items-center gap-3">
-      <img
-        src={logo.src}
+      <Image
+        src={logo}
         alt="NorSon Supplies"
-        width="120"
-        height="66"
+        width={120}
+        height={66}
         fetchpriority="high"
         loading="eager"
       />
@@ -115,14 +116,14 @@ import logo from '../../public/images/logo-norson.png'
       <div class="lg:hidden mb-5 [animation:fade-in_0.6s_ease-out_0.1s_both]">
         <span class="inline-flex items-center gap-2 bg-white/10 border border-white/15 text-white/80 text-xs font-medium px-3 py-1.5 rounded-full">
           <span class="w-1.5 h-1.5 rounded-full bg-[#f97316] shrink-0" aria-hidden="true"></span>
-          Distribuidora en Sinaloa
+          Distribuidora en Sonora
         </span>
       </div>
 
       <h1
-        class="text-[30px] lg:text-5xl font-bold text-white text-center lg:text-left leading-tight [animation:fade-up_0.8s_ease-out_0.15s_both]"
+        class="text-[36px] lg:text-[64px] font-extrabold text-white text-center lg:text-left leading-[1.08] [animation:fade-up_0.8s_ease-out_0.15s_both]"
       >
-        Materiales de construcci&oacute;n en Sinaloa, listos cuando los necesitas
+        Materiales de construcci&oacute;n en Sonora, listos cuando los necesitas
       </h1>
 
       <p
@@ -237,7 +238,7 @@ import logo from '../../public/images/logo-norson.png'
         aria-hidden="true"
       ></div>
 
-      <div class="absolute inset-0 flex items-center justify-center opacity-[0.13]" aria-hidden="true">
+      <div class="absolute inset-0 flex items-center justify-center opacity-[0.45]" aria-hidden="true">
         <svg viewBox="0 0 280 360" width="280" height="360" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="20" y="80" width="240" height="280" stroke="white" stroke-width="3"/>
           <path d="M0 80 L140 18 L280 80" stroke="white" stroke-width="3" fill="none"/>

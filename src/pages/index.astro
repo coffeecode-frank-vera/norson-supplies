@@ -28,7 +28,7 @@ const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "name": "Catálogo de Materiales de Construcción — NorSon Supplies",
-  "description": "Productos disponibles en NorSon Supplies: cemento, block, lámina, impermeabilizantes, acero y más materiales para obra en Sinaloa.",
+  "description": "Productos disponibles en NorSon Supplies: cemento, block, lámina, impermeabilizantes, acero y más materiales para obra en Sonora.",
   "url": `${siteUrl}/#productos`,
   "numberOfItems": catalogData.length,
   "itemListElement": catalogData.map((row, index) => ({
@@ -41,26 +41,30 @@ const itemListSchema = {
 }
 
 // JSON-LD LocalBusiness schema
-// TODO: add "address" object once client provides physical address (streetAddress, addressLocality)
-// NOTE: geo coordinates provided by client (31.300814, -110.954094) — confirm municipality with client
-//   before publishing; these coordinates resolve to the Agua Prieta / Sonora border area, not Sinaloa.
-//   If the business address is in Sinaloa, client must re-confirm correct coordinates.
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "NorSon Supplies",
-  "description": "Distribuidora de materiales de construcción para contratistas en Sinaloa y el noroeste de México. Venta de materiales, renta de maquinaria y soluciones para obra.",
+  "description": "Distribuidora de materiales de construcción para contratistas en Sonora y el noroeste de México. Venta de materiales, renta de maquinaria y soluciones para obra.",
   "telephone": "+526313035892",
   "email": "Yolanda.padilla@galetadistribuidora.com",
   "url": siteUrl,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "C Rodolfo Campodónico 47, Interior 3",
+    "addressLocality": "Heroica Nogales",
+    "addressRegion": "Sonora",
+    "postalCode": "84065",
+    "addressCountry": "MX"
+  },
   "areaServed": {
     "@type": "State",
-    "name": "Sinaloa"
+    "name": "Sonora"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": "31.300814",
-    "longitude": "-110.954094"
+    "latitude": "31.29991313145942",
+    "longitude": "-110.95321510595386"
   },
   "contactPoint": {
     "@type": "ContactPoint",
@@ -87,14 +91,14 @@ const marqueeItems = [
   'Estucos y Recubrimientos',
   'Tejas',
   'Agregados',
-  'Entrega en Sinaloa',
+  'Entrega en Sonora',
   'Asesoría en Obra',
 ]
 ---
 
 <BaseLayout
-  title="Materiales de Construcción en Sinaloa | NorSon Supplies"
-  description="Distribuidora de materiales de construcción en Sinaloa. Bloques, cemento, lámina, acero y renta de maquinaria. Entrega rápida. Llama a NorSon Supplies."
+  title="Materiales de Construcción en Sonora | NorSon Supplies"
+  description="Distribuidora de materiales de construcción en Sonora. Bloques, cemento, lámina, acero y renta de maquinaria. Entrega rápida. Llama a NorSon Supplies."
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
@@ -121,8 +125,8 @@ const marqueeItems = [
     </div>
   </div>
 
-  <Nosotros />
   <Productos />
+  <Nosotros />
   <Contacto />
   <Footer />
 </BaseLayout>

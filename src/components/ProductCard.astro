@@ -8,9 +8,10 @@ interface Props {
   categoria: string
   imagen: ImageMetadata | null
   eager?: boolean
+  delay?: number
 }
 
-const { nombre, descripcion, categoria, imagen, eager = false } = Astro.props
+const { nombre, descripcion, categoria, imagen, eager = false, delay = 0 } = Astro.props
 
 const waHref = (name: string) =>
   `https://wa.me/526313035892?text=${encodeURIComponent(`Hola, me interesa cotizar: ${name}`)}`
@@ -19,6 +20,8 @@ const initial = nombre.charAt(0).toUpperCase()
 ---
 
 <article
+  data-reveal
+  style={delay > 0 ? `transition-delay: ${delay}ms` : ''}
   class="group bg-white rounded-lg shadow-sm border border-[#e2e8f0] overflow-hidden flex flex-col hover:-translate-y-2 hover:shadow-xl hover:border-[#f97316]/30 transition-all duration-300"
   data-categoria={categoria}
 >

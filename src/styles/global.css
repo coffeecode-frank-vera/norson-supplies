@@ -1,5 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 @theme {
   --color-primary: #1a3a5c;
@@ -84,3 +84,8 @@ html { scroll-behavior: smooth; }
   pointer-events: none;
 }
 .btn-shimmer:hover::after { left: 160%; }
+
+@utility bg-dot-grid {
+  background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+  background-size: 24px 24px;
+}
